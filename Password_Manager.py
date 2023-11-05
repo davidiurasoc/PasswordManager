@@ -2,6 +2,7 @@ import logging
 from cryptography.fernet import Fernet
 from datetime import datetime
 import os
+import base64
 
 # Set up logging
 logging.basicConfig(filename='password_manager.log', level=logging.INFO)
@@ -21,10 +22,8 @@ class ManagePassword:
 
     def initialize(self):
         # Initialize the password manager by loading the master password and encryption key
-        self.load_master_password()
         self.load_key()
-        self.master_pwd = self.mpass
-        self.key += self.master_pwd.encode()
+        self.load_master_password()
         self.fer = Fernet(self.key)
         self.load_saved_passwords()
 
@@ -45,38 +44,50 @@ class ManagePassword:
     def load_master_password(self):
         # Check if 'master_pass.txt' exists and load the master password if it does
         if os.path.exists("master_pass.txt"):
-            with open("master_pass.txt", "r+") as pass_file:
+            with open("master_pass.txt", "rb") as pass_file:
                 contents = pass_file.read()
                 if contents:
                     # The file exists and contains data, so use the existing password
-                    self.mpass = contents.strip()
+                    self.mpass = base64.b64decode(contents)
                 else:
                     # The file exists but is empty, so create a new password
                     self.create_mpass()
+                    # After creating a new master password, update the key
+                    self.key = Fernet.generate_key()
+                    with open("key.key", "wb") as key_file:
+                        key_file.write(self.key)
         else:
             # The file doesn't exist, so create it and set a new password
             self.create_mpass()
+            # After creating a new master password, update the key
+            self.key = Fernet.generate_key()
+            with open("key.key", "wb") as key_file:
+                key_file.write(self.key)
 
     def create_mpass(self):
         # Create a new master password and save it to 'master_pass.txt'
         mpass = input("Please enter the master password for creation: ")
-        with open("master_pass.txt", "w+") as pass_file:
-            pass_file.write(mpass)
-        self.mpass = mpass
+        with open("master_pass.txt", "wb") as pass_file:
+            pass_file.write(base64.b64encode(mpass.encode()))
+        logger.info("Created a new master password in master_pass.txt")
+        self.master_pwd = mpass.encode()
 
     def enter_mpass(self):
         max_attempts = 3  # Set the maximum number of attempts
         for _ in range(max_attempts):
             mpass = input("Please enter the master password to log in: ")
-            with open("master_pass.txt", "r+") as pass_file:
-                if mpass.lower() == pass_file.readline().strip():
+            with open("master_pass.txt", "rb") as pass_file:
+                stored_mpass = pass_file.read()
+                if mpass.encode() == base64.b64decode(stored_mpass):
                     print("Login was successful")
+                    logger.info("Login was successfull")
                     self.mpass = mpass
                     break
                 else:
                     print("Invalid master password! Please try again...")
         else:
             print(f"Maximum number of attempts ({max_attempts}) reached. Exiting.")
+            logger.error("Login was unsuccessfull! Entered wrong password for 3 times.")
             exit(1)
 
     def load_key(self):
@@ -84,6 +95,7 @@ class ManagePassword:
         if os.path.exists("key.key") and os.path.getsize("key.key") > 0:
             with open("key.key", "rb") as file:
                 key = file.read()
+                logger.info("Loaded key from key.key")
                 self.key = key
         else:
             # The file doesn't exist or is empty, so create a new encryption key

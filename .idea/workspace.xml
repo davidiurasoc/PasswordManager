@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77fd7321-5ad7-48a1-a86c-c5e769828832" name="Changes" comment="Pushed project">
+    <list default="true" id="77fd7321-5ad7-48a1-a86c-c5e769828832" name="Changes" comment="made some modifications">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Password_Manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/Password_Manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/key.key" beforeDir="false" afterPath="$PROJECT_DIR$/key.key" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/master_pass.txt" beforeDir="false" afterPath="$PROJECT_DIR$/master_pass.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/password_manager.log" beforeDir="false" afterPath="$PROJECT_DIR$/password_manager.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/passwords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/passwords.txt" afterDir="false" />
@@ -30,15 +32,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/iuras/source/repos/davidiurasoc/PasswordManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/iuras/source/repos/davidiurasoc/PasswordManager&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -56,8 +58,19 @@
       <option name="project" value="LOCAL" />
       <updated>1698499782234</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="made some modifications">
+      <option name="closed" value="true" />
+      <created>1698500322444</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1698500322444</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.key" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -72,6 +85,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Pushed project" />
-    <option name="LAST_COMMIT_MESSAGE" value="Pushed project" />
+    <MESSAGE value="made some modifications" />
+    <option name="LAST_COMMIT_MESSAGE" value="made some modifications" />
   </component>
 </project>
